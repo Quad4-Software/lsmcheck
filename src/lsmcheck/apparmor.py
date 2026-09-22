@@ -2,7 +2,7 @@
 """AppArmor introspection.
 
 Detection uses /sys/module/apparmor/parameters/enabled plus the lsm
-list; the running profile and its mode come from
+list. The running profile and its mode come from
 /proc/<pid>/attr/apparmor/current (or the legacy attr/current when
 AppArmor is the only MAC module). Loaded profiles are listed by
 /sys/kernel/security/apparmor/profiles when readable.
@@ -70,7 +70,7 @@ class AppArmorContext:
             return cls(profile or None, mode, raw)
         if raw == "unconfined":
             return cls(None, AppArmorMode.UNCONFINED, raw)
-        # Bare label without a mode suffix; older or future format.
+        # Bare label without a mode suffix, an older or future format.
         return cls(raw or None, AppArmorMode.UNKNOWN, raw)
 
 
@@ -98,7 +98,7 @@ def _other_mac_active() -> bool:
 def current(pid: int | None = None) -> AppArmorContext | None:
     """Return the AppArmor label and mode of a process.
 
-    Reads attr/apparmor/current first; when absent it falls back to the
+    Reads attr/apparmor/current first. When absent it falls back to the
     legacy attr/current, but only if AppArmor looks like the MAC module
     that owns it. None means AppArmor is absent or the file cannot be
     read.
@@ -115,7 +115,7 @@ def profiles() -> dict[str, AppArmorMode]:
     """Return loaded profiles mapped to their mode.
 
     Reads /sys/kernel/security/apparmor/profiles, which needs
-    CAP_MAC_ADMIN or an unconfined process; an empty dict means the
+    CAP_MAC_ADMIN or an unconfined process. An empty dict means the
     file is missing or unreadable.
     """
     text = _proc.read_text(_PROFILES_FILE)

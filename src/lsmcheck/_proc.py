@@ -52,7 +52,7 @@ def write_text(path: Path, value: str) -> None:
 
 
 def proc_attr(pid: int | None, *parts: str) -> Path:
-    """Build a path under /proc/<pid>/attr; pid None means self."""
+    """Build a path under /proc/<pid>/attr. pid None means self."""
     if pid is None:
         return PROC / "self/attr" / Path(*parts)
     if pid < 0:

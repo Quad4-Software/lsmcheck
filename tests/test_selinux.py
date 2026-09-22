@@ -55,7 +55,7 @@ def test_present_matches_real_system() -> None:
         assert selinux.present()
     else:
         # selinuxfs may still be listed in /proc/filesystems or the lsm
-        # list; present() must agree with at least one of them.
+        # list. present() must agree with at least one of them.
         expected = is_active("selinux") or "selinuxfs" in _proc.filesystems()
         assert selinux.present() == expected
 

@@ -9,7 +9,7 @@
 Linux Security Module introspection from procfs and sysfs only: which
 LSMs the kernel runs, the security attributes of a process, and the
 state of AppArmor, SELinux, Yama and lockdown. No dependencies, no
-shell-outs; every reader degrades to None when the feature is absent.
+shell-outs. Every reader degrades to None when the feature is absent.
 
 Requires Python 3.10+ and Linux.
 

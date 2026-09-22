@@ -29,7 +29,7 @@ class LockdownMode(str, Enum):
 def parse_lockdown(text: str) -> LockdownMode | str | None:
     """Extract the bracketed mode from a lockdown file line.
 
-    Mode names unknown to LockdownMode pass through as plain strings;
+    Mode names unknown to LockdownMode pass through as plain strings.
     None means no bracketed token was found.
     """
     for token in text.split():
@@ -43,7 +43,7 @@ def parse_lockdown(text: str) -> LockdownMode | str | None:
 
 
 def lockdown() -> LockdownMode | str | None:
-    """Return the active lockdown mode; None when unsupported."""
+    """Return the active lockdown mode. None when unsupported."""
     text = _proc.read_text(_LOCKDOWN_FILE)
     if text is None:
         return None

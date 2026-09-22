@@ -4,7 +4,7 @@
 The authoritative source is /sys/kernel/security/lsm, a comma separated
 list in the order the kernel runs the hooks. When securityfs is not
 mounted the list is inferred from /proc/filesystems and well known
-per-module files; inference loses ordering and may miss modules that
+per-module files. Inference loses ordering and may miss modules that
 leave no filesystem trace, such as BPF and Landlock.
 
 Kernel references: docs.kernel.org/admin-guide/LSM, lsm= in
@@ -103,7 +103,7 @@ def active_lsms() -> list[LSM | str]:
 
     Reads /sys/kernel/security/lsm. When securityfs is unavailable the
     result is inferred from /proc/filesystems and per-module files and
-    returned in canonical order; inference may miss modules that leave
+    returned in canonical order. Inference may miss modules that leave
     no filesystem trace.
     """
     text = _proc.read_text(_LSM_FILE)

@@ -2,13 +2,13 @@
 """Per-process security attributes under /proc/<pid>/attr.
 
 The files current, exec, fscreate, keycreate, sockcreate and prev are
-the legacy interface for the major LSM; modules such as AppArmor and
+the legacy interface for the major LSM. Modules such as AppArmor and
 Smack also provide subdirectories named after them, addressable here by
 passing a name like "apparmor/current".
 
 Reads return None when the file is missing, unreadable, or the kernel
 answers EINVAL because no active LSM implements the hook. Writes go to
-set_attr and raise LsmError on failure; the kernel only permits writing
+set_attr and raise LsmError on failure. The kernel only permits writing
 the caller's own attributes, so a pid argument mainly affects reads.
 
 Kernel reference: proc_pid_attr(5).
@@ -33,7 +33,7 @@ ATTR_NAMES = ("current", "exec", "fscreate", "keycreate", "sockcreate", "prev")
 
 
 def attr(name: str, pid: int | None = None) -> str | None:
-    """Read /proc/<pid>/attr/<name>; None means unset or unsupported.
+    """Read /proc/<pid>/attr/<name>. None means unset or unsupported.
 
     name may include a module subdirectory prefix, for example
     "apparmor/current" or "smack/current". pid None means self.

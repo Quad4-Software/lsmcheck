@@ -2,7 +2,7 @@
 """SELinux introspection.
 
 Presence is detected through selinuxfs (/proc/filesystems and
-/sys/fs/selinux); the enforcing flag, policy version and MLS flag come
+/sys/fs/selinux). The enforcing flag, policy version and MLS flag come
 from the selinuxfs top-level files, and process contexts come from
 attr/current in user:role:type[:level] form.
 
@@ -57,7 +57,7 @@ class SELinuxContext:
 
     @classmethod
     def parse(cls, text: str) -> SELinuxContext | None:
-        """Parse an attr/current context; None when not SELinux shaped.
+        """Parse an attr/current context. None when not SELinux shaped.
 
         The MLS level may itself contain a colon, as in
         "s0-s0:c0.c1023", so the first three fields are split off and
@@ -80,13 +80,13 @@ def present() -> bool:
 
 
 def enforcing() -> bool | None:
-    """Whether SELinux is enforcing; None when undeterminable."""
+    """Whether SELinux is enforcing. None when undeterminable."""
     value = _proc.read_int(_ENFORCE_FILE)
     return None if value is None else bool(value)
 
 
 def mode() -> SELinuxMode | None:
-    """ENFORCING, PERMISSIVE or DISABLED; None when SELinux is absent."""
+    """ENFORCING, PERMISSIVE or DISABLED. None when SELinux is absent."""
     if not present():
         return None
     enforced = enforcing()
@@ -101,7 +101,7 @@ def policyvers() -> int | None:
 
 
 def mls() -> bool | None:
-    """Whether the policy uses MLS; None when undeterminable."""
+    """Whether the policy uses MLS. None when undeterminable."""
     value = _proc.read_int(_MLS_FILE)
     return None if value is None else bool(value)
 
@@ -109,7 +109,7 @@ def mls() -> bool | None:
 def current(pid: int | None = None) -> SELinuxContext | None:
     """Return the SELinux context of a process.
 
-    Reads the legacy attr/current; labels belonging to other LSMs fail
+    Reads the legacy attr/current. Labels belonging to other LSMs fail
     the context parse and come back as None.
     """
     text = attr("current", pid)
