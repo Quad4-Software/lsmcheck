@@ -1,7 +1,7 @@
 # Changelog
 
-## [Unreleased]
+## [0.1.0] - Unreleased
 
-## [0.1.0] - YYYY-MM-DD
-
-Initial release.
+Initial release: LSM detection via /sys/kernel/security/lsm,
+/proc/<pid>/attr reads and writes, and AppArmor, SELinux, Yama and
+lockdown introspection.
