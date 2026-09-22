@@ -6,6 +6,7 @@ from pathlib import Path
 import pytest
 
 import lsmcheck
+import lsmcheck.attrs
 from lsmcheck.errors import LsmError
 
 
