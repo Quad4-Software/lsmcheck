@@ -5,7 +5,6 @@ from pathlib import Path
 import pytest
 
 import lsmcheck
-import lsmcheck.yama
 from lsmcheck.yama import PtraceScope
 
 

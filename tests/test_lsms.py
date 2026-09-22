@@ -6,7 +6,6 @@ import pytest
 
 import lsmcheck
 import lsmcheck._proc
-import lsmcheck.lsms
 from lsmcheck.errors import UnsupportedError
 from lsmcheck.lsms import LSM
 
